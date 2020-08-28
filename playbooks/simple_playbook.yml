@@ -1,0 +1,20 @@
+- name: Simple playbook​
+  hosts: localhost
+  tasks:
+  - name: Print hostname
+    shell: "hostname"
+    register: "hostname_output"
+  - name: Create a directory if it doesn’t exist
+    file:
+      path: /tmp/demo
+      state: directory
+      mode: '0755'
+  - name: Create a file to store the hostname if it doesn’t exist
+    file:
+      path: /tmp/demo/hostname.txt
+      state: touch
+      mode: u=rw,g=r,o=r
+  - name: Store hostname in file
+    copy:
+      content: "{{ hostname_output.stdout }}\n"
+      dest: "/tmp/demo/hostname.txt"
