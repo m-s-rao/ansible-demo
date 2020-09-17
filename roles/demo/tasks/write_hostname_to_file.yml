@@ -17,5 +17,5 @@
 
 - name: Store hostname in file
   copy: 
-    content: "{{ hostname_output.stdout }}\n"
+    content: "{{ prefix | default('') }}{{ hostname_output.stdout }}\n"
     dest: "/tmp/demo/hostname.txt"

@@ -1,3 +1,4 @@
+## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file_using_role.yml  -e 'prefix="Ansible Demo:"'
 - name: Simple playbook​
   hosts: localhost
   tasks:

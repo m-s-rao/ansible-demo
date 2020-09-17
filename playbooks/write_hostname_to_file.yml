@@ -1,3 +1,4 @@
+## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file.yml 
 - name: Write hostname to file
   hosts: localhost
   tasks:
