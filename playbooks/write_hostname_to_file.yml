@@ -1,4 +1,4 @@
-- name: Simple playbook​
+- name: Write hostname to file
   hosts: localhost
   tasks:
   - name: Print hostname

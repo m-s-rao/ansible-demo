@@ -1,0 +1,6 @@
+- name: Simple playbook​
+  hosts: localhost
+  tasks:
+  - import_role:
+      name: ../roles/demo
+      tasks_from: write_hostname_to_file
