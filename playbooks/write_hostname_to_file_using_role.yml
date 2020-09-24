@@ -1,6 +1,7 @@
-## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file_using_role.yml  -e 'prefix="Ansible Demo:"'
+## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file_using_role.yml -v -e 'prefix="Ansible Demo:"'
 - name: Simple playbook​
   hosts: localhost
+  gather_facts: false
   tasks:
   - import_role:
       name: ../roles/demo

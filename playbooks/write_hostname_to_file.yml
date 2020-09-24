@@ -1,6 +1,7 @@
-## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file.yml 
+## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file.yml -v
 - name: Write hostname to file
   hosts: localhost
+  gather_facts: false
   tasks:
   - name: Print hostname
     shell: "hostname"
@@ -14,6 +15,8 @@
     file:
       path: /tmp/demo/hostname.txt
       state: touch
+      access_time: preserve
+      modification_time: preserve
       mode: u=rw,g=r,o=r
   - name: Store hostname in file
     copy:

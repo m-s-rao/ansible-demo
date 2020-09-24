@@ -1,6 +1,7 @@
-## ansible-playbook -i local.ini ./playbooks/hello_world.yml 
+## ansible-playbook -i local.ini ./playbooks/hello_world.yml
 - name: Simple playbook​
   hosts: localhost
+  gather_facts: false
   tasks:
   - name: Print hostname
     debug:
