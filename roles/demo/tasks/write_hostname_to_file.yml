@@ -1,7 +1,5 @@
----
 - name: Set destination file path
   set_fact:
-    hostname_folder_path: "/tmp/demo/"
     hostname_file: "hostname.txt"
 
 - name: Print hostname
@@ -10,13 +8,13 @@
 
 - name: Create a directory if it doesn’t exist
   file:
-    path: "{{ hostname_folder_path }}"
+    path: /tmp/demo
     state: directory
     mode: '0755'
 
 - name: Create a file to store the hostname if it doesn’t exist
   file:
-    path: "{{ hostname_folder_path }}{{ hostname_file }}"
+    path: /tmp/demo/{{ hostname_file }}
     state: touch
     access_time: preserve
     modification_time: preserve
@@ -24,5 +22,5 @@
 
 - name: Store hostname in file
   copy:
-    content: "{{ prefix | default('') }}{{ hostname_output.stdout }}\n"
-    dest: "{{ hostname_folder_path }}{{ hostname_file }}"
+    content: "{{ hostname_output.stdout }}\n"
+    dest: "/tmp/demo/{{ hostname_file }}"
