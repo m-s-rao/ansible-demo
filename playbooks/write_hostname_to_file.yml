@@ -1,6 +1,7 @@
 ## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file.yml -v
+## ansible-playbook -i inventory/ibmcloud.yml ./playbooks/write_hostname_to_file.yml -v -e target_device="vsdemo.tith.fr"
 - name: Write hostname to file
-  hosts: localhost
+  hosts: "{{ target_device | default('localhost') }}"
   gather_facts: false
   tasks:
   - name: Print hostname
