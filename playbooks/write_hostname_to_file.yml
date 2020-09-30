@@ -1,5 +1,6 @@
-## ansible-playbook -i local.ini ./playbooks/write_hostname_to_file.yml -v
-## ansible-playbook -i inventory/ibmcloud.yml ./playbooks/write_hostname_to_file.yml -v -e target_device="vsdemo.tith.fr"
+## ansible-playbook -i inventories/local.ini ./playbooks/write_hostname_to_file.yml -v
+## ansible-playbook -i inventories/ibmcloud.yml ./playbooks/write_hostname_to_file.yml -v -e target_device="demo.target"  --vault-password-file=vaultpass.txt 
+
 - name: Write hostname to file
   hosts: "{{ target_device | default('localhost') }}"
   gather_facts: false

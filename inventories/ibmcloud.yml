@@ -1,0 +1,10 @@
+all:
+  hosts:
+    demo.target: 
+      ansible_host: 000.000.000.000
+  vars:
+    ansible_connection: ssh
+    ansible_user: false_user
+    ansible_ssh_pass: false_ssh_pass
+
+
