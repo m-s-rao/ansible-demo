@@ -18,5 +18,5 @@
 
 - name: Store os in file
   copy:
-    content: "{{ hostvars['localhost']['ansible_facts']['distribution'] }}\n"
+    content: "{{ hostvars[target_device|default('localhost')]['ansible_distribution'] }}\n"
     dest: "/tmp/demo/{{ os_file }}"
