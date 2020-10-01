@@ -1,0 +1,22 @@
+## ansible-playbook -i inventories/local.ini ./playbooks/write_os_to_file.yml -v
+## ansible-playbook -i inventories/ibmcloud.yml ./playbooks/write_os_to_file.yml -v -e target_device="demo.target"  --vault-password-file=vaultpass.txt 
+
+- name: Write OS name to file
+  hosts: "{{ target_device | default('localhost') }}"
+  tasks:
+  - name: Create a directory if it doesn’t exist
+    file:
+      path: /tmp/demo
+      state: directory
+      mode: '0755'
+  - name: Create a file to store the OS name if it doesn’t exist
+    file:
+      path: /tmp/demo/os.txt
+      state: touch
+      access_time: preserve
+      modification_time: preserve
+      mode: u=rw,g=r,o=r
+  - name: Store OS name in file
+    copy:
+      content: "{{ hostvars['localhost']['ansible_facts']['distribution'] }}\n"
+      dest: "/tmp/demo/os.txt"

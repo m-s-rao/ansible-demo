@@ -1,0 +1,22 @@
+- name: Set destination file path
+  set_fact:
+    os_file: "os.txt"
+
+- name: Create a directory if it doesn’t exist
+  file:
+    path: /tmp/demo
+    state: directory
+    mode: '0755'
+
+- name: Create a file to store the os if it doesn’t exist
+  file:
+    path: /tmp/demo/{{ os_file }}
+    state: touch
+    access_time: preserve
+    modification_time: preserve
+    mode: u=rw,g=r,o=r
+
+- name: Store os in file
+  copy:
+    content: "{{ hostvars['localhost']['ansible_facts']['distribution'] }}\n"
+    dest: "/tmp/demo/{{ os_file }}"

@@ -1,0 +1,9 @@
+## ansible-playbook -i inventories/local.ini ./playbooks/write_os_to_file_using_role.yml -v -e os_file=ps2.txt
+## ansible-playbook -i inventories/ibmcloud.yml ./playbooks/write_os_to_file_using_role.yml -v -e target_device="demo.target"  --vault-password-file=vaultpass.txt
+
+- name: Simple playbook​
+  hosts: "{{ target_device | default('localhost') }}"
+  tasks:
+  - import_role:
+      name: ../roles/demo
+      tasks_from: write_os_to_file
